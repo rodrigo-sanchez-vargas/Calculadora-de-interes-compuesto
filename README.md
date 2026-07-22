@@ -4,4 +4,4 @@
 
 ## Lenguaje: Python.
 
-## Conocimientos utilizados: Manejo de errores, fórmula del interés compuesto.
+## Conocimientos utilizados: Manejo de errores, funciones, matemáticas básicas.
