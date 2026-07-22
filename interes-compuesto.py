@@ -1,8 +1,6 @@
 while True:
     try:
-        ahorro = int(
-            input("Ingrese el monto a ahorrar mensualmente: ").replace(".", "")
-        )
+        ahorro = int(input("Monto ahorro mensual: ").replace(".", ""))
 
         if ahorro >= 0:
             break
@@ -11,9 +9,7 @@ while True:
 
 while True:
     try:
-        años, meses = map(
-            int, (input("Ingrese la cantidad años y meses de ahorro: ").split())
-        )
+        años, meses = map(int, (input("Cantidad años y meses de ahorro: ").split()))
 
         if años >= 0 and meses >= 0:
             break
@@ -22,7 +18,7 @@ while True:
 
 while True:
     try:
-        interes_anual = float(input("Ingrese el porcentaje de interes: ")) / 100
+        interes_anual = float(input("Porcentaje de interes: ")) / 100
 
         if interes_anual > 0:
             break
@@ -32,14 +28,19 @@ while True:
 tiempo = (años * 12) + meses
 interes_mensual = (1 + interes_anual) ** (1 / 12) - 1
 
-valor_futuro = ahorro * ((((1 + interes_mensual) ** tiempo) - 1) / interes_mensual)
-ganancias_intereses = valor_futuro - (ahorro * tiempo)
+
+def interes_compuesto(ahorros, time, i_mensual):
+    monto_final = ahorros * ((((1 + i_mensual) ** time) - 1) / i_mensual)
+    intereses = monto_final - (ahorros * time)
+
+    return monto_final, intereses
+
+
+valor_futuro, ganancias_intereses = interes_compuesto(ahorro, tiempo, interes_mensual)
 
 print(
-    f"Dinero obtenido solo de los intereses: ${ganancias_intereses:,.0f} pesos chilenos.".replace(
+    f"Ganancias de intereses: ${ganancias_intereses:,.0f} pesos chilenos.".replace(
         ",", "."
     )
 )
-print(
-    f"El monto ahorrado es de: ${valor_futuro:,.0f} pesos chilenos.".replace(",", ".")
-)
+print(f"Monto total ahorrado: ${valor_futuro:,.0f} pesos chilenos.".replace(",", "."))
